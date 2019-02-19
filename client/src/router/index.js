@@ -8,6 +8,7 @@ import EditPost from '@/components/EditPost'
 Vue.use(Router)
 
 export default new Router({
+  // If you see a # in the url you visit(http://localhost:8080/#/posts), you can turn it of by adding
   mode: 'history',
   routes: [
     {
