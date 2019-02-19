@@ -8,28 +8,14 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-// app.get('/posts', (req, res) => {
-//   res.send(
-//     [{
-//       title: 'Hello World!',
-//       description: 'Hi there! How are you?'
-//     }]
-//   )
-// })
-
-var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/posts')
-var db = mongoose.connection
-db.on('error', console.error.bind(console, 'connection error'))
-db.once('open', function (callback) {
-  console.log('Connection Succeeded')
-})
+const mongodbConnModule = require('./mongodbConnModule')
+var db = mongodbConnModule.connect()
 
 var Post = require('../models/post')
 
 // Add new post
 app.post('/posts', (req, res) => {
-  // var db = req.db
+  var db = req.db
   var title = req.body.title
   var description = req.body.description
   var newPost = new Post({
@@ -60,7 +46,7 @@ app.get('/posts', (req, res) => {
 
 // Fetch single post
 app.get('/post/:id', (req, res) => {
-  // var db = req.db;
+  var db = req.db;
   Post.findById(req.params.id, 'title description', function (error, post) {
     if (error) { console.error(error) }
     res.send(post)
