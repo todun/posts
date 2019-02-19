@@ -27,3 +27,6 @@ npm start
 ## 3b. browser
 
 [http://localhost:8080](http://localhost:8080)
+
+## 4. References
+[mevn-stack-application-part-2-2] (https://medium.com/@anaida07/mevn-stack-application-part-2-2-9ebcf8a22753)
